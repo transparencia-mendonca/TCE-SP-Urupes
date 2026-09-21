@@ -1,0 +1,43 @@
+TCESP Urupês — v0.9.19-UR
+
+Painel analítico de receitas e despesas municipais com base nos dados oficiais disponibilizados pelo Tribunal de Contas do Estado de São Paulo (TCESP).
+
+MUNICÍPIO
+Urupês/SP
+
+BASE HISTÓRICA PERMANENTE
+Exercícios: 2014 a 2026.
+Fotografia atual de 2026: janeiro a julho.
+Total do baseline: 450.778 registros de despesas e 13.103 de receitas.
+
+ARQUIVOS DA BASE
+O repositório deve conter. na raiz. baseline-manifest.json e data-2014.json até data-2026.json. O seed-data.js permanece mínimo para evitar um arquivo monolítico.
+
+PERSISTÊNCIA
+O IndexedDB usa o nome tcesp-urupes-v6. Futuras atualizações de interface não devem trocar esse nome nem apagar o banco. Em navegador novo. o painel reconstrói a base a partir de baseline-manifest.json e dos arquivos data-AAAA.json.
+
+RESTAURAÇÃO
+O botão de restauração reconstrói a fotografia permanente arquivada no repositório.
+
+ANÁLISE
+Inclui visão geral. receitas. despesas. comparação anual. ranking de fornecedores. pagamentos eventuais. sinais de auditoria e Ficha do Credor. Sinais são instrumentos de triagem e não constituem conclusão de irregularidade. A confirmação da natureza de lançamentos depende do cotejo com o Portal da Transparência e documentos do empenho/liquidação.
+
+CACHE
+O service worker é desativado e caches antigos do painel de Urupês são removidos para reduzir risco de versão obsoleta no GitHub Pages.
+
+REPOSITÓRIO
+https://github.com/transparencia-mendonca/TCE-SP-Urupes
+
+PAGES
+https://transparencia-mendonca.github.io/TCE-SP-Urupes/
+
+Baseline: urupes-baseline-2026-09-20
+Build: 0919UR-20260920
+
+
+CORREÇÃO v0.9.19-UR
+- Detecta automaticamente IndexedDB vazio deixado por carga anterior interrompida.
+- Recarrega a baseline permanente quando a base local existe, mas está vazia.
+- Não volta para tela zerada se a gravação do objeto grande no IndexedDB falhar.
+- Mantém a baseline carregada em memória durante a sessão quando a persistência local falha.
+- Força revalidação do manifesto e dos arquivos anuais para evitar cache HTTP obsoleto.
